@@ -9,16 +9,28 @@ export default class ImageGallery extends Component {
     super(props);
     this.state = {
       images: [],
+      query: 'cat',
+      page: 1,
     };
   }
 
   componentDidMount() {
-    const initialPage = 1;
-    this.fetchImages('cat', initialPage);
+    this.fetchImages();
   }
 
-  fetchImages(query, page) {
+  componentDidUpdate(_, prevState) {
+    if (
+      this.state.page !== prevState.page ||
+      this.state.query !== prevState.query
+    ) {
+      this.fetchImages();
+    }
+  }
+
+  fetchImages() {
+    const { query, page } = this.state;
     const apiUrl = `https://pixabay.com/api/?key=${apiKey}&q=${query}&page=${page}&per_page=${perPage}&image_type=photo&orientation=horizontal`;
+
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
@@ -44,8 +56,8 @@ export default class ImageGallery extends Component {
   }
 
   render() {
-      return (
-        
+    return (
+      <div>
         <ul className={styles.ImageGallery}>
           {this.state.images.map(image => (
             <li key={image.id} className={styles.ImageGalleryItemImage}>
@@ -53,6 +65,8 @@ export default class ImageGallery extends Component {
             </li>
           ))}
         </ul>
+        <button onClick={this.loadMore}>Load More</button>
+      </div>
     );
   }
 }
