@@ -3,11 +3,10 @@ import styles from './styles.module.css';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { fetchQuery } from 'components/config';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import { Button } from './Button/Button';
 import { Modal } from './Modal/Modal';
 import Loader from './Loader/Loader';
-
 
 export class App extends Component {
   state = {
@@ -35,6 +34,7 @@ export class App extends Component {
 
       if (data.hits.length === 0) {
         toast.error('No images found for your query!');
+        this.setState({ spinner: false });
         return;
       }
 
@@ -72,15 +72,14 @@ export class App extends Component {
   };
   closeModal = () => {
     this.setState({ showModal: false });
-  
   };
 
   render() {
-    const { spiner, hits, total, showModal, urlModal } = this.state;
+    const { spinner, hits, total, showModal, urlModal } = this.state;
     return (
       <div className={styles.App}>
         <Searchbar onSubmit={this.handleFormSubmit} />
-       { spiner&& <Loader/>}
+        {spinner && <Loader />}
         <ImageGallery hits={this.state.hits} openModal={this.openModal} />
         {hits.length > 0 && hits.length < total && (
           <Button onClick={this.handleLoadMore} />
