@@ -134,6 +134,7 @@ img {
   margin-right: auto;
 }
 
+
 /*
  * Стили компонента ImageGalleryItem
  */
@@ -142,6 +143,13 @@ img {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
+.ImageGalleryItem img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 5px; 
+}
+
 
 .ImageGalleryItemImage {
   width: 100%;
@@ -155,26 +163,25 @@ img {
   cursor: zoom-in;
 }
 
-/*
- * Стили компонента Modal
- */
 
-.Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+ /* modal.module.css */
+.Modal {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1200;
 }
 
-.Modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+.Modal img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  margin: auto; /* Додайте це */
 }
 
 /*
@@ -186,7 +193,6 @@ img {
   background-color: #3f51b5;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
-  display: inline-block;
   color: #fff;
   border: 0;
   text-decoration: none;
@@ -196,7 +202,10 @@ img {
   line-height: 24px;
   font-style: normal;
   font-weight: 500;
-  min-width: 180px;
+  max-width: 180px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
