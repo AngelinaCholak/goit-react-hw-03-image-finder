@@ -6,7 +6,7 @@ const ImageGallery = ({ hits, openModal }) => {
   return (
     <div>
       <ul className={styles.ImageGallery}>
-        {hits &&
+        {
           hits.map(({ id, webformatURL, largeImageURL, tags }) => (
             <ImageGalleryItem
               className={styles.ImageGalleryItemImage}

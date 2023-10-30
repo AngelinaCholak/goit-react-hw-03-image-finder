@@ -38,9 +38,8 @@ export class App extends Component {
         return;
       }
 
-      const newImages = data.hits;
-      const totalHits = data.totalHits;
-
+      const { hits: newImages, totalHits } = data;
+  
       if (page === 1) {
         toast.info(`Found: ${totalHits} images for your request`);
       }

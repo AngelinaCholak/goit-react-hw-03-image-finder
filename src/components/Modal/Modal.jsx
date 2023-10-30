@@ -17,18 +17,17 @@ export class Modal extends Component {
     }
   };
 
-    clickOverlay = () => {
-        this.props.closeModal();
-        
+  clickOverlay = (event) => {
+    if (event.currentTarget === event.target) {
+      this.props.closeModal();
+    }
   };
 
   render() {
     const { data } = this.props;
     return (
       <div className={styles.Modal} onClick={this.clickOverlay}>
-        <div>
           <img src={data} alt="The same img but large" />
-        </div>
       </div>
     );
   }
